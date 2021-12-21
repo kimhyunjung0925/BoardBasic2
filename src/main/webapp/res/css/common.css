@@ -1,0 +1,51 @@
+* { padding: 0; margin: 0; box-sizing: border-box; }
+
+a { text-decoration: none; color: #000; }
+table, td, th { border: 1px solid #262626; border-collapse: collapse; }
+td, th { padding: 5px; }
+ul { list-style: none; }
+
+.container { display: grid; grid-template-rows: 80px 1fr 50px; min-height: 100vh; }
+
+table{width: 100%; border-top: 1px solid #222;border-left: 0;border-right: 0; }
+table th{background: #eee;border-top: 2px solid dodgerblue;}
+table *{border-color: #ddd;}
+table th:first-child,table td:first-child{border-left: 0;}
+table th:last-child,table td:last-child{border-right: 0;}
+
+.header { background-color: rgb(106, 137, 204); padding: 10px 30px;}
+
+.topMenu { display: flex; }
+.topMenu li a { color: #fff; }
+.topMenu li a:hover {color: #efefef;}
+.topMenu li:not(:first-child) { margin-left: 10px;}
+.topMenu li:last-child {flex-grow: 0; text-align: right;}
+.topMenu li:nth-last-child(2) {flex-grow: 1; text-align: right;}
+
+.top10 { display: flex; }
+.top10 a { color: #262626; margin-right: 20px; margin-top: 10px;}
+
+.body { padding: 20px; }
+
+.subContainer { height: 100%; display: grid; grid-template-columns: 120px 1fr; }
+.subContainer .subMenus { border-right: 1px solid #868484; }
+.subContainer .subMenus li:not(:first-child) { margin-top: 10px; }
+.subContainer .subBody { padding-left: 10px;}
+
+.circular--img { display: inline-block; overflow: hidden; border-radius: 20%; border: 4px solid #ecf0f1; }
+.circular--img img { width: 100%; height: 100%; object-fit: cover; }
+.circular--size40 { width: 40px; height: 40px; }
+.circular--size200 { width: 200px;height: 200px; }
+.circular--size300 { width: 300px;height: 300px; }
+
+input[type="submit"] { margin-left: 5px;}
+
+.wrap{display: flex;justify-content: center;align-content: center;}
+.wrap .a { display: flex; justify-content: flex-end;}
+.wrap>div{width: 400px;background: beige;border-radius: 5px;box-shadow: 2px 2px 5px rgba(0,0,0,0.3);padding: 20px;}
+.wrap>div input[type="text"]{width: 100%;padding: 5px;margin-bottom: 5px;}
+.wrap>div input[type="button"]{ padding: 5px;margin-bottom: 5px;}
+.wrap>div input[type="password"]{width: 100%;padding: 5px; margin-bottom: 5px;}
+.wrap>div input[type="submit"]{width: 100%;padding: 5px;background: chocolate; border: 0; margin-bottom: 5px; margin-left: 0px;}
+
+.footer { background-color: #4b4b4b; color: #fff; }

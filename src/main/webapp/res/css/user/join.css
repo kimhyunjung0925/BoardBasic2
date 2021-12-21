@@ -1,0 +1,10 @@
+* { padding: 0; margin: 0; box-sizing: border-box; }
+
+.join {display: flex;justify-content: center;align-content: center;}
+.join>div{width: 315px;background: #c8d1f5;border-radius: 5px;box-shadow: 2px 2px 5px rgba(0,0,0,0.3);padding: 20px;}
+
+#frm div:not(:first-child){ padding-top: 15px;}
+#frm input[type="text"] {width: 270px; padding: 3px;}
+#frm input[type="password"] {width: 270px; padding: 3px;}
+#frm label { font-size: 15px;}
+#frm input[type="submit"],input[type="reset"] {margin-left:0px; margin-right:8px; padding:3px;}
