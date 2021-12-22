@@ -45,30 +45,11 @@
             </form>
         </div>
     </c:if>
-    <div class="cmtbody">
-        <table>
-            <tr>
-                <th>내용</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>비고</th>
-            </tr>
-            <c:forEach items="${requestScope.cmtList}" var="item">
-                <tr>
-                    <td><c:out value="${item.ctnt}"/></td>
-                    <td>${item.writerNm}</td>
-                    <td>${item.rdt}</td>
-                    <td>
-                        <c:if test="${sessionScope.loginUser.iuser == item.writer}">
-                            <button onclick="openModForm(${item.icmt}, '${item.ctnt}');">수정</button>
-                            <button onclick="isDelCmt(${requestScope.data.iboard}, ${item.icmt});">삭제</button>
-                        </c:if>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
+
+    <div id="cmtListContainer" data-iboard ="${requestScope.data.iboard}" data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
+
 </div>
+
 <div class="cmtModContainer">
     <div class="cmtModBody">
         <form action="/board/cmt/mod" method="post" id="cmtModFrm">
@@ -82,4 +63,5 @@
         </form>
     </div>
 </div>
+
 <script src="/res/js/board/detail.js?ver=1"></script>

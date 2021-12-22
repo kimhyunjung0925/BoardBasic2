@@ -28,10 +28,6 @@ public class BoardDetailServlet extends HttpServlet {
         BoardVO data = BoardDAO.selBoardDetail(param);
         req.setAttribute("data", data);
 
-        BoardCmtDTO cmtParam = new BoardCmtDTO();
-        cmtParam.setIboard(iboard);
-        req.setAttribute("cmtList", BoardCmtDAO.selBoardCmtList(cmtParam));
-
         int loginUserPk = Utils.getLoginUserPk(req);
 
         if(loginUserPk > 0) { //로그인 했을 때 좋아요 했는지 체크

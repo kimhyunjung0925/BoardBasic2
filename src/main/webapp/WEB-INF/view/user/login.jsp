@@ -6,8 +6,7 @@
             <div><input type="password" name="upw" placeholder="password" value="121212"></div>
             <div><input type="button" value="비밀번호 보이기" id="btnShowPw"></div>
             <div><input type="submit" value="login"></div>
-        </form>
-        <div>
+         <div>
             <a class="a" href="/user/join">회원가입 하러가기</a>
         </div>
     </div>
