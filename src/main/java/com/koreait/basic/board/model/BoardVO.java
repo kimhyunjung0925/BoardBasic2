@@ -19,6 +19,7 @@ public class BoardVO {
 
     private int countCmt;
     private int heartCount;
+    private int hateCount;
 
     private String profileImg;
 }

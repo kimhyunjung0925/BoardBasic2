@@ -110,7 +110,7 @@ public class BoardDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT A.iboard, A.title, A.writer, A.hit, A.rdt, B.nm as writerNm, B.profileImg " +
+        String sql = "SELECT A.iboard, A.title, A.writer, A.hit, A.rdt,A.mdt, B.nm as writerNm, B.profileImg " +
                     " FROM t_board A " +
                     " INNER JOIN t_user B " +
                     " ON A.writer = B.iuser ";
@@ -129,17 +129,21 @@ public class BoardDAO {
                 int writer = rs.getInt("writer");
                 int hit = rs.getInt("hit");
                 String rdt = rs.getString("rdt");
+                String mdt = rs.getString("mdt");
                 String writerNm = rs.getString("writerNm");
                 int countcmt = BoardCmtDAO.countCmt(iboard);
                 int heartcount = BoardHeartDAO.heartCount(iboard);
+                int hatecount = BoardHateDAO.hateCount(iboard);
                 BoardVO vo = BoardVO.builder()
                         .iboard(iboard)
                         .title(title)
                         .countCmt(countcmt)
                         .heartCount(heartcount)
+                        .hateCount(hatecount)
                         .writer(writer)
                         .hit(hit)
                         .rdt(rdt)
+                        .mdt(mdt)
                         .writerNm(writerNm)
                         .profileImg(rs.getString("profileImg"))
                         .build();
@@ -158,7 +162,7 @@ public class BoardDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT A.title, A.ctnt, A.writer, A.hit, A.rdt, B.nm as writerNm " +
+        String sql = "SELECT A.title, A.ctnt, A.writer, A.hit, A.rdt, A.mdt, B.nm as writerNm " +
                 " FROM t_board A " +
                 " INNER JOIN t_user B " +
                 " ON A.writer = B.iuser " +
@@ -174,8 +178,10 @@ public class BoardDAO {
                 int writer = rs.getInt("writer");
                 int hit = rs.getInt("hit");
                 String rdt = rs.getString("rdt");
+                String mdt = rs.getString("mdt");
                 String writerNm = rs.getString("writerNm");
                 int heartcount = BoardHeartDAO.heartCount(param.getIboard());
+                int hatecount = BoardHateDAO.hateCount(param.getIboard());
                 return BoardVO.builder()
                         .iboard(param.getIboard())
                         .title(title)
@@ -183,8 +189,10 @@ public class BoardDAO {
                         .writer(writer)
                         .hit(hit)
                         .rdt(rdt)
+                        .mdt(mdt)
                         .writerNm(writerNm)
                         .heartCount(heartcount)
+                        .hateCount(hatecount)
                         .build();
             }
         } catch(Exception e) {
@@ -235,7 +243,6 @@ public class BoardDAO {
         }
         return 0;
     }
-
 
     public static int delBoard(BoardEntity entity) {
         Connection con = null;

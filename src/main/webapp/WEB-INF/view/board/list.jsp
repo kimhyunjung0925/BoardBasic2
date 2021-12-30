@@ -33,7 +33,8 @@
             <table id="boardTable">
                 <colgroup>
                     <col width="10%">
-                    <col width="35%">
+                    <col width="31%">
+                    <col width="4%">
                     <col width="4%">
                     <col width="4%">
                     <col width="17%">
@@ -44,6 +45,7 @@
                     <th>title</th>
                     <th>hits</th>
                     <th>like</th>
+                    <th>hate</th>
                     <th>writer</th>
                     <th>reg-datetime</th>
                 </tr>
@@ -72,8 +74,9 @@
                         </td>
                         <td>${item.hit}</td>
                         <td>${item.heartCount}</td>
+                        <td>${item.hateCount}</td>
                         <td><div class="circular--img circular--size40"><img src="/res/img/${pImg}"></div> ${eachWriterNm}</td>
-                        <td>${item.rdt}</td>
+                        <td>${item.rdt} <c:if test="${item.rdt != item.mdt}">(수정:${item.mdt})</c:if></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -81,7 +84,10 @@
         <div class="pageContainer">
             <c:set var="selectedPage" value="${param.page == null ? 1 : param.page}" />
             <c:forEach var="page" begin="1" end="${maxPageNum}">
-                <div><a href="/board/list?page=${page}&searchType=${param.searchType}&searchText=${param.searchText}&rowCnt=${param.rowCnt}"><span class="${selectedPage == page ? 'selected' : ''}"><c:out value="${page}"/></span></a></div>
+                <div>
+                    <a href="/board/list?page=${page}&searchType=${param.searchType}&searchText=${param.searchText}&rowCnt=${param.rowCnt}">
+                    <span class="${selectedPage == page ? 'selected' : ''}"><c:out value="${page}"/></span></a>
+                </div>
             </c:forEach>
         </div>
     </c:otherwise>

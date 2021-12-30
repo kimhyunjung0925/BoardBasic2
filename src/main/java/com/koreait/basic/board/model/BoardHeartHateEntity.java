@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardHeartEntity {
+public class BoardHeartHateEntity {
     private int iuser;
     private int iboard;
     private String rdt;

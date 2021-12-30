@@ -2,7 +2,7 @@ package com.koreait.basic.board;
 
 import com.koreait.basic.Utils;
 import com.koreait.basic.board.model.BoardHeartHateEntity;
-import com.koreait.basic.dao.BoardHeartDAO;
+import com.koreait.basic.dao.BoardHateDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/board/heart")
-public class BoardHeartServlet extends HttpServlet {
+@WebServlet("/board/hate")
+public class BoardHateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String proc = req.getParameter("proc");
@@ -24,11 +24,11 @@ public class BoardHeartServlet extends HttpServlet {
         entity.setIuser(iuser);
 
         switch (proc){
-            case "1": //좋아요 처리
-                BoardHeartDAO.insBoardHeart(entity);
+            case "1": //싫어요 처리
+                BoardHateDAO.insBoardHate(entity);
                 break;
-            case "2": //좋아요 취소
-                BoardHeartDAO.delBoardHeart(entity);
+            case "2": //싫어요 취소
+                BoardHateDAO.delBoardHate(entity);
                 break;
         }
         res.sendRedirect("/board/detail?nothis=1&iboard=" + iboard);

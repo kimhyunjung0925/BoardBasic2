@@ -26,6 +26,7 @@ public class BoardDelServlet extends HttpServlet {
         switch(result) {
             case 1:
                 res.sendRedirect("/board/list");
+                //삭제성공 했을 때 원래 디테일로 들어가기 전 리스트에서 나타내는 행수랑 같게 돌아게는 못하나..?
                 return;
             default:
                 req.setAttribute("err", "글 삭제를 실패하였습니다.");
@@ -34,3 +35,5 @@ public class BoardDelServlet extends HttpServlet {
         }
     }
 }
+
+//삭제를 했을 때 원래 디테일로 들어가기 전 리스트에서 나타내는 행수랑 같게 돌아게게는 못하나..?

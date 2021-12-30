@@ -13,47 +13,69 @@
         </div>
     </c:if>
 
-    <c:if test="${sessionScope.loginUser != null}">
-        <div>
-            ${requestScope.data.heartCount}
+
+    <div>
+        ${requestScope.data.heartCount}
+        <c:choose>
+            <c:when test="${requestScope.isHeart == 1}">
+                <c:if test="${sessionScope.loginUser != null}">
+                    <a href="/board/heart?proc=2&iboard=${requestScope.data.iboard}">
+                </c:if>
+                <i class="fas fa-thumbs-up"></i></a>
+            </c:when>
+            <c:otherwise>
+                <c:if test="${sessionScope.loginUser != null && requestScope.isHate != 1}">
+                    <a href="/board/heart?proc=1&iboard=${requestScope.data.iboard}">
+                </c:if>
+                <i class="far fa-thumbs-up"></i></a>
+            </c:otherwise>
+        </c:choose>
+
+        ${requestScope.data.hateCount}
             <c:choose>
-                <c:when test="${requestScope.isHeart == 1}">
-                    <a href="/board/heart?proc=2&iboard=${requestScope.data.iboard}"> <i class="fas fa-thumbs-up"></i></a>
+                <c:when test="${requestScope.isHate == 1}">
+                    <c:if test="${sessionScope.loginUser != null}">
+                        <a href="/board/hate?proc=2&iboard=${requestScope.data.iboard}">
+                    </c:if>
+                    <i class="fas fa-thumbs-down"></i></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="/board/heart?proc=1&iboard=${requestScope.data.iboard}"> <i class="far fa-thumbs-up"></i></a>
+                    <c:if test="${sessionScope.loginUser != null && requestScope.isHeart != 1}">
+                        <a href="/board/hate?proc=1&iboard=${requestScope.data.iboard}">
+                    </c:if>
+                    <i class="far fa-thumbs-down"></i></a>
                 </c:otherwise>
             </c:choose>
 
-        </div>
-    </c:if>
+
+    </div>
 
 
     <div>글번호: ${requestScope.data.iboard}</div>
     <div>조회수 : <c:out value="${requestScope.data.hit}"/></div>
-    <div>작성자 : <c:out value="${requestScope.data.writerNm}"/> </div>
+    <div>작성자 : <c:out value="${requestScope.data.writerNm}"/></div>
     <div>등록일시 : <c:out value="${requestScope.data.rdt}"/></div>
+    <div>수정일시 : <c:out value="${requestScope.data.mdt}"/> </div>
     <div>제목 : <c:out value="${requestScope.data.title}"/></div>
     <div><c:out value="${requestScope.data.ctnt}"/></div>
 
     <c:if test="${sessionScope.loginUser != null}">
-        <div class="cmtbtn">
-            <form action="/board/cmt/reg" method="post">
-                <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
+        <div>
+            <form id="cmtNewFrm">
                 <input type="text" name="ctnt" placeholder="댓글 내용">
                 <input type="submit" value="댓글달기">
             </form>
         </div>
     </c:if>
 
-    <div id="cmtListContainer" data-iboard ="${requestScope.data.iboard}" data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
+    <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"
+         data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
 
 </div>
 
 <div class="cmtModContainer">
     <div class="cmtModBody">
-        <form action="/board/cmt/mod" method="post" id="cmtModFrm">
-            <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
+        <form id="cmtModFrm" onsubmit="return false;">
             <input type="hidden" name="icmt">
             <div><input type="text" name="ctnt" placeholder="댓글 내용"></div>
             <div>

@@ -1,12 +1,11 @@
 package com.koreait.basic.board;
 
 import com.koreait.basic.Utils;
-import com.koreait.basic.board.cmt.model.BoardCmtDTO;
 import com.koreait.basic.board.model.BoardDTO;
-import com.koreait.basic.board.model.BoardHeartEntity;
+import com.koreait.basic.board.model.BoardHeartHateEntity;
 import com.koreait.basic.board.model.BoardVO;
-import com.koreait.basic.dao.BoardCmtDAO;
 import com.koreait.basic.dao.BoardDAO;
+import com.koreait.basic.dao.BoardHateDAO;
 import com.koreait.basic.dao.BoardHeartDAO;
 
 import javax.servlet.ServletException;
@@ -31,10 +30,11 @@ public class BoardDetailServlet extends HttpServlet {
         int loginUserPk = Utils.getLoginUserPk(req);
 
         if(loginUserPk > 0) { //로그인 했을 때 좋아요 했는지 체크
-            BoardHeartEntity bhEntity = new BoardHeartEntity();
+            BoardHeartHateEntity bhEntity = new BoardHeartHateEntity();
             bhEntity.setIuser(loginUserPk);
             bhEntity.setIboard(iboard);
             req.setAttribute("isHeart", BoardHeartDAO.selIsHeart(bhEntity));
+            req.setAttribute("isHate", BoardHateDAO.selIsHate(bhEntity));
         }
 
         if(data.getWriter() != loginUserPk && nohits != 1) { //로그인 안 되어 있으면 0, 로그인 되어 있으면 pk값

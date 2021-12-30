@@ -7,12 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class BoardHeartDAO {
-    public static int selIsHeart(BoardHeartHateEntity entity){
+public class BoardHateDAO {
+    public static int selIsHate(BoardHeartHateEntity entity){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = " SELECT iuser FROM t_board_heart WHERE iuser = ? AND iboard = ? ";
+        String sql = " SELECT iuser FROM t_board_hate WHERE iuser = ? AND iboard = ? ";
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
@@ -32,10 +32,10 @@ public class BoardHeartDAO {
         return 0; // 에러터짐
     }
 
-    public static int insBoardHeart(BoardHeartHateEntity entity){ // 좋아요 처리
+    public static int insBoardHate(BoardHeartHateEntity entity){ // 좋아요 처리
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = " INSERT INTO t_board_heart (iuser, iboard) VALUES(?, ?)";
+        String sql = " INSERT INTO t_board_hate (iuser, iboard) VALUES(?, ?)";
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
@@ -50,10 +50,10 @@ public class BoardHeartDAO {
         return 0;
     }
 
-    public static int delBoardHeart(BoardHeartHateEntity entity){ // 좋아요 취소 처리
+    public static int delBoardHate(BoardHeartHateEntity entity){ // 좋아요 취소 처리
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = " DELETE FROM t_board_heart WHERE iuser = ? AND iboard = ? ";
+        String sql = " DELETE FROM t_board_hate WHERE iuser = ? AND iboard = ? ";
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
@@ -69,11 +69,11 @@ public class BoardHeartDAO {
     }
 
     // 좋아요 수 출력
-    public static int heartCount(int iboard){
+    public static int hateCount(int iboard){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = " SELECT COUNT(*) FROM t_board_heart WHERE iboard = ?";
+        String sql = " SELECT COUNT(*) FROM t_board_hate WHERE iboard = ?";
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql);
